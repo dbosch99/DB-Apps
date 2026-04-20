@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DB-Apps</title>
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      line-height: 1.6;
+      color: #111;
+      background: #fff;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      margin-top: 48px;
+      font-size: 22px;
+      color: #666;
+    }
+
+    .app {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .app:hover {
+      opacity: 0.7;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .name {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .desc {
+      font-size: 15px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>DB-Apps</h1>
+
+<h2>Web Apps</h2>
+
+<a class="app" href="https://dbosch99.github.io/CuCu-PWA/" target="_blank">
+  <img src="CuCu.png" class="icon">
+  <div class="content">
+    <div class="name">CuCu</div>
+    <div class="desc">Scopri chi non ricambia il follow su Instagram.</div>
+  </div>
+</a>
+
+<a class="app" href="https://dbosch99.github.io/CADScale-PWA/" target="_blank">
+  <img src="CadScale.png" class="icon">
+  <div class="content">
+    <div class="name">CadScale</div>
+    <div class="desc">Calcola la scala corretta per layout AutoCAD.</div>
+  </div>
+</a>
+
+<h2>macOS Apps (Apple Silicon)</h2>
+
+<a class="app" href="https://dbosch99.github.io/AspectRatio/" target="_blank">
+  <img src="AspectRatio.png" class="icon">
+  <div class="content">
+    <div class="name">AspectRatio</div>
+    <div class="desc">Calcola aspect ratio standard e risoluzioni compatibili con crop e overscale.</div>
+  </div>
+</a>
+
+<a class="app" href="https://dbosch99.github.io/MetaLens/" target="_blank">
+  <img src="MetaLens.png" class="icon">
+  <div class="content">
+    <div class="name">MetaLens</div>
+    <div class="desc">Analizza metadati di foto e video usando solo framework Apple.</div>
+  </div>
+</a>
+
+<a class="app" href="https://dbosch99.github.io/GPSDivider/" target="_blank">
+  <img src="GPSDivider.png" class="icon">
+  <div class="content">
+    <div class="name">GPSDivider</div>
+    <div class="desc">Divide automaticamente i media con o senza dati GPS.</div>
+  </div>
+</a>
+
+<a class="app" href="https://dbosch99.github.io/BackInTime/" target="_blank">
+  <img src="BackInTime.png" class="icon">
+  <div class="content">
+    <div class="name">BackInTime</div>
+    <div class="desc">Ripristina la data di creazione nel Finder dai metadati originali.</div>
+  </div>
+</a>
+
+<a class="app" href="https://dbosch99.github.io/VidGrabber/" target="_blank">
+  <img src="VidGrabber.png" class="icon">
+  <div class="content">
+    <div class="name">VidGrabber</div>
+    <div class="desc">Scarica video e audio da varie piattaforme tramite yt-dlp.</div>
+  </div>
+</a>
+
+<a class="app" href="https://dbosch99.github.io/MoFFy/" target="_blank">
+  <img src="MoFFy.png" class="icon">
+  <div class="content">
+    <div class="name">MoFFy</div>
+    <div class="desc">Converte video in HEVC o ProRes 422 HQ in formato MOV.</div>
+  </div>
+</a>
+
+<a class="app" href="https://dbosch99.github.io/CleanFPS/" target="_blank">
+  <img src="CleanFPS.png" class="icon">
+  <div class="content">
+    <div class="name">CleanFPS</div>
+    <div class="desc">Rimuove frame duplicati e genera video puliti a FPS costante.</div>
+  </div>
+</a>
+
+<a class="app" href="https://dbosch99.github.io/ReRate/" target="_blank">
+  <img src="ReRate.png" class="icon">
+  <div class="content">
+    <div class="name">ReRate</div>
+    <div class="desc">Modifica il framerate mantenendo invariato il numero di frame.</div>
+  </div>
+</a>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js', { scope: './' }).catch(console.error);
+    });
+  }
+</script>
+
+</body>
+</html>
