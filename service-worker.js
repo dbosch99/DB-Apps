@@ -1,5 +1,5 @@
 // === cambia SOLO questa riga per forzare un refresh completo ===
-const CACHE = 'db-apps-05-05-2026-1';
+const CACHE = 'db-apps-05-05-2026-2';
 // ==============================================================================
 
 const ASSETS = [
