@@ -10,15 +10,20 @@
   <meta http-equiv="Expires" content="0">
 
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 48px 24px;
-      line-height: 1.6;
-      color: #111;
-      background: #fff;
-    }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 48px 24px;
+        line-height: 1.6;
+        color: #111;
+        background: #fff;
+        visibility: hidden;
+      }
+
+      body.ready {
+        visibility: visible;
+      }
 
     h1 {
       font-size: 42px;
@@ -170,11 +175,24 @@
 </a>
 
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
+  window.addEventListener('load', async () => {
+    const images = Array.from(document.images);
+
+    await Promise.all(images.map(img => {
+      if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+
+      return new Promise(resolve => {
+        img.onload = resolve;
+        img.onerror = resolve;
+      });
+    }));
+
+    document.body.classList.add('ready');
+
+    if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./service-worker.js', { scope: './' }).catch(console.error);
-    });
-  }
+    }
+  });
 </script>
 
 </body>
