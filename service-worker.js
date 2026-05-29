@@ -1,10 +1,17 @@
 // === cambia SOLO questa riga per forzare un refresh completo ===
-const CACHE = 'db-apps-07-05-2026_1';
+const CACHE = 'db-apps-29-05-2026_A';
 // ==============================================================================
 
 const ASSETS = [
   './',
   './index.html',
+
+  './DB-Apps-16.png',
+  './DB-Apps-32.png',
+  './DB-Apps-180.png',
+  './DB-Apps-192.png',
+  './DB-Apps-512.png',
+
   './CuCu.png',
   './CADScale.png',
   './AspectRatio.png',
