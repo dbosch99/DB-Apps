@@ -19,77 +19,122 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <style>
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 48px 24px;
-        line-height: 1.6;
-        color: #111;
-        background: #fff;
-        visibility: hidden;
-      }
+      <style>
+        :root {
+          --bg: #ffffff;
+          --text: #111111;
+          --muted: #666666;
+          --desc: #555555;
+          --button-bg: #ffffff;
+          --button-border: #dddddd;
+          --button-text: #111111;
+        }
 
-      body.ready {
-        visibility: visible;
-      }
+        body.dark {
+          --bg: #000000;
+          --text: #f2f2f2;
+          --muted: #a0a0a0;
+          --desc: #b5b5b5;
+          --button-bg: #111111;
+          --button-border: #2a2a2a;
+          --button-text: #f2f2f2;
+        }
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 32px;
-    }
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+          max-width: 900px;
+          margin: 0 auto;
+          padding: 48px 24px;
+          line-height: 1.6;
+          color: var(--text);
+          background: var(--bg);
+          visibility: hidden;
+        }
 
-    h2 {
-      margin-top: 48px;
-      font-size: 22px;
-      color: #666;
-    }
+        body.ready {
+          visibility: visible;
+        }
 
-    .app {
-      display: flex;
-      gap: 16px;
-      margin-top: 24px;
-      text-decoration: none;
-      color: inherit;
-    }
+        .theme-toggle {
+          display: flex;
+          justify-content: flex-end;
+          margin-bottom: 24px;
+        }
 
-    .app:hover {
-      opacity: 0.7;
-    }
+        .theme-toggle button {
+          border: 1px solid var(--button-border);
+          background: var(--button-bg);
+          color: var(--button-text);
+          padding: 8px 12px;
+          border-radius: 999px;
+          font-size: 14px;
+          font-weight: 700;
+          cursor: pointer;
+        }
 
-    .icon {
-      width: 48px;
-      height: 48px;
-      flex-shrink: 0;
-    }
+        h1 {
+          font-size: 42px;
+          margin-bottom: 32px;
+        }
 
-    .content {
-      display: flex;
-      flex-direction: column;
-    }
+        h2 {
+          margin-top: 48px;
+          font-size: 22px;
+          color: var(--muted);
+        }
 
-    .name {
-      font-size: 20px;
-      font-weight: 600;
-    }
+        .app {
+          display: flex;
+          gap: 16px;
+          margin-top: 24px;
+          text-decoration: none;
+          color: inherit;
+        }
 
-    .desc {
-      font-size: 15px;
-      color: #555;
-    }
+        .app:hover {
+          opacity: 0.7;
+        }
 
-    .small {
-      font-size: 14px;
-      color: #666;
-      margin-top: -16px;
-      margin-bottom: 24px;
-      text-align: left;
-    }
-  </style>
+        .icon {
+          width: 48px;
+          height: 48px;
+          flex-shrink: 0;
+        }
+
+        .content {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .name {
+          font-size: 20px;
+          font-weight: 600;
+        }
+
+        .desc {
+          font-size: 15px;
+          color: var(--desc);
+        }
+
+        .small {
+          font-size: 14px;
+          color: var(--muted);
+          margin-top: -16px;
+          margin-bottom: 24px;
+          text-align: left;
+        }
+
+        a {
+          color: inherit;
+        }
+      </style>
 </head>
 
 <body>
+    
+    <div class="theme-toggle">
+      <button id="themeToggle" type="button">Dark mode</button>
+    </div>
 
 <h1>DB-Apps</h1>
 
@@ -185,7 +230,22 @@
 </a>
 
 <script>
-  window.addEventListener('load', async () => {
+    window.addEventListener('load', async () => {
+      const themeToggle = document.getElementById('themeToggle');
+      const savedTheme = localStorage.getItem('dbapps-theme');
+
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        themeToggle.textContent = 'Light mode';
+      }
+
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+
+        const isDark = document.body.classList.contains('dark');
+        localStorage.setItem('dbapps-theme', isDark ? 'dark' : 'light');
+        themeToggle.textContent = isDark ? 'Light mode' : 'Dark mode';
+      });
     const images = Array.from(document.images);
 
     await Promise.all(images.map(img => {
