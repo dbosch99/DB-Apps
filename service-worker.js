@@ -1,19 +1,21 @@
 // === cambia SOLO questa riga per forzare un refresh completo ===
-const CACHE = 'db-apps-30-05-2026_A';
+const CACHE_PREFIX = 'db-apps-';
+const CACHE = `${CACHE_PREFIX}2026-10-26_RAL`;
 // ==============================================================================
 
 const ASSETS = [
   './',
   './index.html',
 
-  './DB-Apps-16.png',
-  './DB-Apps-32.png',
-  './DB-Apps-180.png',
-  './DB-Apps-192.png',
-  './DB-Apps-512.png',
+  './Icone sito/DB-Apps-16.png',
+  './Icone sito/DB-Apps-32.png',
+  './Icone sito/DB-Apps-180.png',
+  './Icone sito/DB-Apps-192.png',
+  './Icone sito/DB-Apps-512.png',
 
   './CuCu.png',
   './CADScale.png',
+  './RAL.png',
   './AspectRatio.png',
   './MetaLens.png',
   './GPSDivider.png',
@@ -35,7 +37,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)));
+    await Promise.all(keys.filter(k => k.startsWith(CACHE_PREFIX) && k !== CACHE).map(k => caches.delete(k)));
     await self.clients.claim();
   })());
 });
